@@ -1,24 +1,16 @@
 %{
-int flag=0;
+#include<stdio.h>
 %}
 %%
-[a-z . 0-9]+@[a-z]+".com"|".in" { flag=1; }
+[a-z A-Z 0-9]+(@[a-z]+)(.[a-z]+) {printf("%s is valid email", yytext); }
+.* {printf("it is not a valid email");}
 %%
 int main()
 {
+printf("\n enter the email:");
 yylex();
-if(flag==1)
-printf("Accepted");
-else
-printf("Not Accepted");
+return 0;
 }
 int yywrap()
-{ return 1;
- }
-
-OUTPUT
-G:\lex>a.exe
-sse123@gmail.com
-
-Accepted
-G:\lex>
+{
+}
